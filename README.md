@@ -1,101 +1,52 @@
-# AI_2026
-Jet Engine Predictive Maintenance
+# Jet Engine Predictive Maintenance
 
-NASA CMAPSS FD001 | RUL Prediction
+Predict Remaining Useful Life (RUL) and health status of jet engines using NASA CMAPSS FD001 dataset.
 
-Overview
+## 🎯 Problem
+Predict engine failure and health percentage from multivariate sensor data for proactive maintenance.
 
-This project implements a predictive maintenance system for jet engines using the NASA CMAPSS FD001 dataset.
-The system predicts Remaining Useful Life (RUL), converts it into a Health Percentage, and visualizes engine degradation through an interactive dashboard.
+## 📊 Dataset
+**NASA CMAPSS FD001**
+- Run-to-failure training data
+- 3 operational settings + 21 sensor readings
+- Engine cycles until failure
 
-Problem
+## 🔧 Approach
+- **Model**: Random Forest Regressor
+- **Output**: RUL (cycles) → Health % (0-100)
+- **Why RF?** Handles noise, non-linear patterns, explainable
 
-Given multivariate sensor data from aircraft engines:
+## 📈 Health Zones
+- 🟢 **>70%** — Healthy
+- 🟡 **30-70%** — Warning  
+- 🔴 **<30%** — Critical
 
-Predict Remaining Useful Life (RUL)
-
-Convert RUL into a Health Score (0–100%)
-
-Visualize engine health for maintenance decision-making
-
-Dataset
-
-NASA CMAPSS – FD001
-
-train_FD001.txt: Run-to-failure training data
-
-test_FD001.txt: Test data without failure labels
-
-Features include:
-
-Engine ID, operating cycles
-
-3 operational settings
-
-21 sensor readings
-
-Approach
-
-Model: Random Forest Regressor
-
-Task: RUL regression (not classification)
-
-Why Random Forest?
-
-Handles noisy sensor data
-
-Captures non-linear degradation
-
-Explainable and stable for live demos
-
-Health Score
-Health (%) = (Predicted RUL / Max RUL) × 100
-
-
-Clamped between 0–100.
-
-Health Zones
-
-🟢 >70% — Healthy
-
-🟡 30–70% — Warning
-
-🔴 <30% — Critical
-
-Dashboard (Streamlit)
-
-Engine ID selector
-
-Predicted RUL
-
-Health percentage
-
-Condition status (Green/Yellow/Red)
-
-Health degradation trend over time
-
-Evaluation
-
-Metric: RMSE (cycles)
-
-Achieves ~20 RMSE, suitable for FD001 with explainable models
-
-Project Structure
-jet_engine_pm/
-├── app.py
-├── model.py
-├── data_utils.py
-├── requirements.txt
-└── data/
-
-Run Locally
+## 🚀 Quick Start
+```bash
 pip install -r requirements.txt
 streamlit run app.py
+```
 
-Notes
+## 📁 Structure
+```
+jet_engine_pm/
+├── app.py              # Streamlit dashboard
+├── model.py            # RF model training
+├── data_utils.py       # Data preprocessing
+├── requirements.txt
+└── data/
+```
 
-No deep learning used
+## 📊 Performance
+- **RMSE**: ~20 cycles
+- Explainable, no deep learning
+- Real-time predictions
 
-Fully explainable pipeline
+## 🎥 Features
+- Engine selector
+- RUL prediction
+- Health percentage & status
+- Degradation trend visualization
 
-Designed for hackathon demos and real-time interpretation
+---
+Built for hackathon demos | Fully interpretable pipeline
